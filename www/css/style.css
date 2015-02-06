@@ -1,0 +1,146 @@
+body {
+    background-color: pink;
+    overflow: scroll;
+    margin: 0;
+    padding: 0;
+}
+
+.bordLine {
+    border-style: solid;
+    border-color: pink;
+    padding: 5px 0px;
+}
+
+.item {
+    padding-top: 0;
+    padding-right: 0;
+    top: 0;
+
+}
+
+.item-thumbnail-left > img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left .item-content > img:first-child, .item-thumbnail-left .item-content .item-image {
+    top: 0;
+    padding-top: 0;
+    padding-right: 0;
+}
+
+li {
+    overflow: scroll;
+}
+
+.bordLineLast {
+    border-bottom-width: 1px;
+}
+
+.productName {
+    padding-top: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FF69B4;
+}
+
+.category {
+    float: right;
+    font-size: 16px;
+    margin: 3px;
+    top: 0;
+    right: 0;
+    color: #FF69B4;
+    font-weight: bold;
+}
+
+.productIntroduction {
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    padding: 0 20px 0 0;
+    font-size: 14px;
+    white-space: normal;
+    color: #FF69B4;
+}
+
+.productDate {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FF69B4;
+}
+
+.list {
+    margin-bottom: 0;
+    overflow: scroll;
+
+}
+
+.product_image {
+    margin-top: 12px;
+}
+
+ion-content {
+    background-color: pink;
+}
+
+
+
+.buttons.left-buttons {
+    width: 40px;
+    height: 34px;
+    display: block;
+}
+
+.borderRadius5 {
+    border-radius: 5px 5px 5px 5px;
+}
+
+.borderRadius {
+    border-radius: 5px 5px 5px 5px;
+}
+
+.highIndex {
+    z-index: 100000;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    left: 0;
+    position: fixed;
+
+}
+
+.bar-stable .button, .bar.bar-stable .title {
+    color: #fff;
+    font-weight: bold;
+}
+
+.pink {
+    background-color: pink;
+}
+
+.list.card.pink {
+
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+div.item.item-avatar {
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+div.item.item-body {
+
+    padding: 1px;
+}
+div.scroll.padding {
+    background-color: pink;
+}
+
+.item-body h1, .item-body h2, .item-body h3, .item-body h4, .item-body h5, .item-body h6, .item-body p{
+    padding: 3px 3px;
+margin:0;
+}
+.addToCart {
+    width: 130px;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+}

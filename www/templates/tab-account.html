@@ -1,0 +1,24 @@
+<ion-view title="<b>收藏夹">
+  <ion-nav-buttons side="left" >
+    <button class="button button-icon icon ion-navicon" ng-click="doSomething()">
+    </button>
+  </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content has-header="true" class="padding">
+    <ion-refresher on-refresh=" types.allItems()"></ion-refresher>
+    <div  class = "product bordLine list" ng-repeat="item in checked">
+      <a href="#/tab/coupon-detail/{{item.id-1}}" class=" item item-thumbnail-left borderRadius5">
+        <img class ="product_image" ng-src="{{ item.image }}">
+        <div class="category">吃</div>
+        <ul>
+          <li class="productName">超级豪华全家桶</li>
+          <li class="productDetail">Nine Inch   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo voluptates vel necessitatibus quos nisi illo recusandae quisquam, sapiente facere omnis, quaerat quidem quis libero ea consequatur suscipit ipsum, minus doloribus!</li>
+          <li class="productDate">有效期：3天5小时</li>
+        </ul>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+

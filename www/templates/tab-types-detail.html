@@ -1,0 +1,21 @@
+<!--
+  This template loads for the 'tab.type-detail' state (app.js)
+  'type' is a $scope variable created in the typesCtrl controller (controllers.js)
+  The typesCtrl pulls data from the types service (service.js)
+  The types service returns an array of type data
+-->
+<ion-view title="{{type.name}}">
+  <ion-content has-header="true" padding="true" ng-controller="MyCtrl" >
+    <div  class = "product bordLine list  borderRadius" ng-repeat="item in items | reverse | filter:type.category :strict">
+      <a href="#/tab/types-detail-coupon/{{item.id}}" class=" item item-thumbnail-left  borderRadius">
+        <img class ="product_image" ng-src="{{ item.image }}">
+        <div class="category" ng-class="{'ion-heart' : checked.indexOf(item) > -1 }">{{item.name}}</div>
+        <ul>
+          <li class="productName"><b>{{item.name}}</li>
+          <li class="productIntroduction"><b>{{item.productIntroduction}}</li>
+          <li class="productDate">{{item.timeLimit}}</li>
+        </ul>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>
