@@ -179,20 +179,30 @@ console.log($scope.checked)
         $scope.$on('myService:getUserConfigSuccess', function () {
             $scope.currentTime = new Date();
             $scope.items = types.allItems();
-            console.log($scope.types)
             if (localStorageService.get("checkedData")) {
                 $scope.checked = localStorageService.get("checkedData")
             }
         });
+        if (localStorageService.get("checkedData")) {
+            $scope.checked = localStorageService.get("checkedData")
+        }
+        console.log($scope.checked)
+        $scope.find = function (x){
+            var y = false
+            angular.forEach($scope.checked, function (value) {
+                if (value.id == x) {
+                    console.log("true")
+                    y = true
+                }
+            });
+            return y;
+        }
+
         $scope.currentTime = new Date();
         $scope.items = types.allItems();
 
 
-        angular.forEach($scope.checked, function (value) {
-            console.log($scope.items.indexOf(value))
-        });
-        if (localStorageService.get("checkedData")) {
-            $scope.checked = localStorageService.get("checkedData")
-        }
+
+
 
     });
