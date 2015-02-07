@@ -116,7 +116,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/types-detail-coupon/:couponId',
         views: {
           'tab-types': {
-            templateUrl: 'templates/tab-coupon-detail.html',
+            templateUrl: 'templates/types-detail-coupon.html',
             controller: 'CouponDetailCtrl'
           }
         }
