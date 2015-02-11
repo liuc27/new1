@@ -113,10 +113,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 
       .state('tab.types-detail-coupon', {
-        url: '/types-detail-coupon/:couponId',
+        url: '/tab-types-detail-coupon/:couponId',
         views: {
           'tab-types': {
-            templateUrl: 'templates/types-detail-coupon.html',
+            templateUrl: 'templates/tab-types-detail-coupon.html',
             controller: 'CouponDetailCtrl'
           }
         }
