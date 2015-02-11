@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="css/test.css">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="css/css.css">
 
 <head>
     <meta charset="UTF-8">
@@ -9,33 +10,64 @@
 
 <body ng-app="inputExample">
     <div ng-controller="ExampleController">
-        <form name="myForm">
-
-
-            name:
-            <input type="text" ng-model="user.name">
-            <br>category:
-            <input type="text" ng-model="user.category">
-            <br>numbers:
-            <input type="number" ng-model="user.numbers">
-            <br>productName:
-            <input type="text" ng-model="user.productName">
-            <br>productIntroduction:
-            <input type="text" ng-model="user.productIntroduction">
-            <br>productDetail:
-            <input type="text" ng-model="user.productDetail">
-            <br>timeLimit:
-            <input type="text" ng-model="user.timeLimit">
-            <br>image:
-            <input ng-change="abc()" type='file' ng-model='image' base-sixty-four-input>
-
-
-
-        </form>
-        <button ng-click="sendJson()">sendJson</button>
+        <table>
+            <tr>
+                <td>name:</td>
+                <td>
+                    <input type="text" ng-model="user.name"> </td>
+            </tr>
+            <br>
+            <tr>
+                <td>category:</td>
+                <td>
+                    <input type="text" ng-model="user.category">
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>numbers:</td>
+                <td>
+                    <input type="number" ng-model="user.numbers"> </td>
+            </tr>
+            <br>
+            <tr>
+                <td>productName:</td>
+                <td>
+                    <input type="text" ng-model="user.productName"> </td>
+            </tr>
+            <br>
+            <tr>
+                <td>productIntroduction:</td>
+                <td>
+                    <input type="text" ng-model="user.productIntroduction"> </td>
+            </tr>
+            <br>
+            <tr>
+                <td>productDetail:</td>
+                <td>
+                    <input type="text" ng-model="user.productDetail"> </td>
+            </tr>
+            <br>
+            <tr>
+                <td>timeLimit:</td>
+                <td>
+                    <input type="text" ng-model="user.timeLimit"> </td>
+            </tr>
+            <br>
+            <tr>
+                <td>image:</td>
+                <td>
+                    <input ng-change="abc()" type='file' ng-model='image' base-sixty-four-input> </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <button id="hugeButton" ng-click="sendJson()">sendJson</button>
+        <br>
         <hr>
+
         <tt id="jsonDiv">{{user}}</tt>
-        <br/>
+
     </div>
 </body>
 <script src="js/angular.js"></script>
