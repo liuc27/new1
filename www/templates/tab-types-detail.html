@@ -9,8 +9,9 @@
     <div  class = "product bordLine list  borderRadius" ng-repeat="item in items | reverse | filter:type.category :strict">
       <a href="#/tab/tab-types-detail-coupon/{{item.id}}" class=" item item-thumbnail-left borderRadius5">
         <img class ="product_image" ng-src="{{ item.image }}">
-        <div class="category" >剩余{{item.numbers}}</div>
-        <div class="category ion-heart" ng-if="find(item.id) ">已领取</div>
+        <div class="category" ng-if="item.numbers>=0">剩{{item.numbers}}</div>
+        <div class="category" ng-if="item.numbers<0">没有剩余</div>
+        <div class="category ion-heart" ng-if="find(item.id) ">已领</div>
 
         <ul>
           <li class="productName"><b>{{item.name}}</li>

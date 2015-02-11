@@ -28,6 +28,10 @@ var Post = db.model('Post', {
         type: String,
         required: true
     },
+    timeLimit: {
+        type: String,
+        required: false
+    },
     image: {
         type: String,
         required: true

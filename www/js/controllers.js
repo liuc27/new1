@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
 
     })
 
-    .controller('CouponDetailCtrl', function ($scope, $stateParams, localStorageService, types, $http) {
+    .controller('CouponDetailCtrl', function ($scope, $stateParams, localStorageService, $ionicPopup, types, $http) {
 
         $scope.types = types.all();
         $scope.items = types.allItems();
@@ -57,11 +57,16 @@ console.log("stateParams are");
                             "couponId": couponId
                         }).success(function (data) {
                             if (data === "couldn't find") {
-                                alert("库存不足,无法领取！");
+                                $ionicPopup.alert({
+                                    title: '非常抱歉,库存不足',
+                                });
                                 $scope.favoritesText = "无法领取";
                             }
                             else {
-                                alert("found");
+
+                                $ionicPopup.alert({
+                                    title: '恭喜,成功领取!',
+                                });
                                 $scope.favoritesText = "已经领取";
                                 $scope.favorites = "button icon-left ion-heart button-positive";
                                 console.log($scope.items[couponId].numbers--)

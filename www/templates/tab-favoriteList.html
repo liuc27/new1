@@ -9,7 +9,7 @@
     <div  class = "product bordLine list" ng-repeat="item in theChecked | reverse">
       <a href="#/tab/favoriteList/{{item.id}}" class="item item-thumbnail-left borderRadius5">
         <img class ="product_image" ng-src="{{ item.image }}">
-        <div class="category ion-heart">{{item.name}}</div>
+        <div class="category ion-heart">{{item.timeLimit}}</div>
         <ul>
           <li class="productName"><b>{{item.name}}</li>
           <li class="productIntroduction"><b>{{item.productIntroduction}}</li>

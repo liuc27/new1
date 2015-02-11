@@ -37,14 +37,8 @@ app.post('/api/posts', function (req, res, next) {
         if (err) {
             return next(err)
         }
-        if (posts.length <= 0) {
-            idNumber = 0
-            localStorage.setItem("idNumber", idNumber)
-        } else {
-            idNumber = localStorage.getItem("idNumber")
-            console.log(idNumber++)
-            localStorage.setItem("idNumber", idNumber)
-        }
+        console.log(posts.length)
+        idNumber = posts.length
         callback(idNumber, req, res)
     })
 })
@@ -55,15 +49,9 @@ app.post('/api/postAll', function (req, res, next) {
         if (err) {
             return next(err)
         } else {
+            console.log(posts.length)
             for (var i = 0; i < req.count; i++) {
-                if (posts.length <= 0) {
-                    idNumber = 0
-                    localStorage.setItem("idNumber", idNumber)
-                } else {
-                    idNumber = localStorage.getItem("idNumber")
-                    console.log(idNumber++)
-                    localStorage.setItem("idNumber", idNumber)
-                }
+                idNumber = posts.length
                 callback(idNumber, req[i], res)
             }
         }
@@ -79,6 +67,7 @@ var callback = function (idNumber, req, res) {
         productName: req.body.productName,
         productIntroduction: req.body.productIntroduction,
         productDetail: req.body.productDetail,
+        timeLimit: req.body.timeLimit,
         image: req.body.image
     })
 
@@ -129,11 +118,11 @@ app.post('/api/add', function (req, res, next) {
             "id": req.body.couponId
         }, function (err, data) {
 
-            console.log(data[0].numbers)
+            console.log(data)
             console.log(data[0].category)
             if (err) {
                 return next(err)
-            } else if (data[0].numbers > 0) {
+            } else if (data[0].numbers >= 0) {
 
 
                 res.send("found")

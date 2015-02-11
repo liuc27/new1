@@ -8,7 +8,8 @@
         <h2>{{coupon.productName}}</h2>
         <p>{{coupon.timeLimit}}</p>
         <div class="addToCart">
-            <button ng-class="favorites" ng-init = "favoriteClass()" ng-click = "changeClass()">{{favoritesText}}</button>
+            <button ng-class="favorites" ng-if="coupon.numbers>0" ng-init = "favoriteClass()" ng-click = "changeClass()">{{favoritesText}}</button>
+            <button ng-class="favorites" ng-if="coupon.numbers<=0">没有剩余</button>
         </div>
 
     </div>
