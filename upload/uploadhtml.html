@@ -1,97 +1,96 @@
-<!doctype html>
-<html lang="en">
-<meta charset="utf-8">
+<!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="css/css.css">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Example - example-input-directive-production</title>
+  <meta charset="UTF-8">
+  <title>Example - example-input-directive-production</title>
 </head>
 
 <body ng-app="inputExample">
-    <div ng-controller="ExampleController">
-        <table>
-            <tr>
-                <td>name:</td>
-                <td>
-                    <input type="text" ng-model="user.name"> </td>
-            </tr>
-            <br>
-            <tr>
-                <td>category:</td>
-                <td>
-                    <input type="text" ng-model="user.category">
-                </td>
-            </tr>
-            <br>
-            <tr>
-                <td>numbers:</td>
-                <td>
-                    <input type="number" ng-model="user.numbers"> </td>
-            </tr>
-            <br>
-            <tr>
-                <td>productName:</td>
-                <td>
-                    <input type="text" ng-model="user.productName"> </td>
-            </tr>
-            <br>
-            <tr>
-                <td>productIntroduction:</td>
-                <td>
-                    <input type="text" ng-model="user.productIntroduction"> </td>
-            </tr>
-            <br>
-            <tr>
-                <td>productDetail:</td>
-                <td>
-                    <input type="text" ng-model="user.productDetail"> </td>
-            </tr>
-            <br>
-            <tr>
-                <td>timeLimit:</td>
-                <td>
-                    <input type="text" ng-model="user.timeLimit"> </td>
-            </tr>
-            <br>
-            <tr>
-                <td>image:</td>
-                <td>
-                    <input ng-change="abc()" type='file' ng-model='image' base-sixty-four-input> </td>
-            </tr>
-        </table>
-        <br>
-        <br>
-        <button id="hugeButton" ng-click="sendJson()">sendJson</button>
-        <br>
-        <hr>
+  <div ng-controller="ExampleController">
+    <table>
+      <tr>
+        <td>name:</td>
+        <td>
+          <input type="text" ng-model="user.name">
+        </td>
+      </tr>
+      <tr>
+        <td>category:</td>
+        <td>
+          <input type="text" ng-model="user.category">
+        </td>
+      </tr>
+      <tr>
+        <td>numbers:</td>
+        <td>
+          <input type="number" ng-model="user.numbers">
+        </td>
+      </tr>
+      <tr>
+        <td>productName:</td>
+        <td>
+          <input type="text" ng-model="user.productName">
+        </td>
+      </tr>
+      <tr>
+        <td>productIntroduction:</td>
+        <td>
+          <input type="text" ng-model="user.productIntroduction">
+        </td>
+      </tr>
+      <tr>
+        <td>productDetail:</td>
+        <td>
+          <input type="text" ng-model="user.productDetail">
+        </td>
+      </tr>
+      <tr>
+        <td>timeLimit:</td>
+        <td>
+          <input type="text" ng-model="user.timeLimit">
+        </td>
+      </tr>
+      <tr>
+        <td>image:</td>
+        <td>
+          <input ng-change="abc()" type='file' ng-model='image' base-sixty-four-input>
+        </td>
+      </tr>
+    </table>
 
-        <tt id="jsonDiv">{{user}}</tt>
+    <br>
+    <br>
+    <button id="hugeButton" ng-click="sendJson()">sendJson</button>
+    <br>
+    <hr>
 
-    </div>
+    <tt id="jsonDiv">{{user}}</tt>
+
+  </div>
 </body>
 <script src="js/angular.js"></script>
 <script src="js/angular-base64-upload.js"></script>
 <script>
-    angular.module('inputExample', ['naif.base64'])
-        .controller('ExampleController', function ($scope, $http) {
-            $scope.user = {};
-            $scope.image = {};
+  angular.module('inputExample', ['naif.base64'])
+    .controller('ExampleController', function ($scope, $http) {
+      $scope.user = {};
+      $scope.image = {};
 
-            $scope.uploadme = {};
-            $scope.uploadme.src = "";
-            $scope.abc = function () {
-                $scope.user.image = "data:" + $scope.image.filetype + ";base64," + $scope.image.base64;
-                console.log($scope.user)
-            }
+      $scope.uploadme = {};
+      $scope.uploadme.src = "";
+      $scope.abc = function () {
+        $scope.user.image = "data:" + $scope.image.filetype + ";base64," + $scope.image.base64;
+        console.log($scope.user)
+      }
 
-            $scope.sendJson = function () {
-                $http.post("http://www.hahadz.com:3000/api/posts", $scope.user).success(function (data) {
-                    console.log(data)
-                    alert("successfully pushed")
-                })
-            }
-        });
+      $scope.sendJson = function () {
+        $http.post("http://www.hahadz.com:3000/api/posts", $scope.user).success(function (data) {
+          console.log(data)
+          alert("successfully pushed")
+        })
+      }
+    });
 </script>
 
 </html>
