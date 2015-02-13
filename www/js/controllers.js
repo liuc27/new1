@@ -58,14 +58,14 @@ console.log("stateParams are");
                         }).success(function (data) {
                             if (data === "couldn't find") {
                                 $ionicPopup.alert({
-                                    title: '非常抱歉,库存不足',
+                                    title: '非常抱歉,库存不足'
                                 });
                                 $scope.favoritesText = "无法领取";
                             }
                             else {
 
                                 $ionicPopup.alert({
-                                    title: '恭喜,成功领取!',
+                                    title: '恭喜,成功领取!'
                                 });
                                 $scope.favoritesText = "已经领取";
                                 $scope.favorites = "button icon-left ion-heart button-positive";
@@ -93,8 +93,6 @@ console.log("stateParams are");
         $scope.types = types.all();
         $scope.items = types.allItems();
         $scope.coupon = types.fetch($stateParams.couponId);
-        $scope.checked = types.favoriteList();
-        $scope.theChecked = [];
         $scope.favorites = "button icon-left ion-plus button-positive";
         $scope.favoritesText = "点击领取";
 
@@ -115,11 +113,7 @@ console.log("stateParams are");
             console.log(key)
             console.log(value.id)
             console.log($scope.items[key])
-            if($scope.items[value.id]){
-                $scope.theChecked.push(angular.copy($scope.items[key]))
-                localStorageService.set("checkedData",$scope.theChecked);
-                console.log($scope.checked)
-            }
+
         })
     })
 
