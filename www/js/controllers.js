@@ -20,12 +20,14 @@ angular.module('starter.controllers', [])
         $scope.types = types.all();
         $scope.items = types.allItems();
         $scope.checked = types.favoriteList();
-console.log("stateParams are");
+        console.log("stateParams are");
         console.log($stateParams)
         $scope.coupon = types.fetch($stateParams.couponId);
         $scope.favorites = "button icon-left ion-plus button-positive";
         $scope.favoritesText = "点击领取";
         console.log(localStorageService.get("checkedData"));
+        console.log(localStorageService.get("checkedData"));
+
         console.log($scope.checked);
         if (localStorageService.get("checkedData")) {
             $scope.checked = localStorageService.get("checkedData")
@@ -33,7 +35,7 @@ console.log("stateParams are");
         $scope.favoriteClass = function () {
             var exist = false;
             angular.forEach($scope.checked, function (value) {
-                if (value.id == $scope.coupon.id) {
+                if (value.name == $scope.coupon.name&&value.category == $scope.coupon.category&&value.category == $scope.coupon.category&&value.productIntroduction == $scope.coupon.productIntroduction&&value.productName == $scope.coupon.productName) {
                     exist = true;
                 }
             });
@@ -45,85 +47,80 @@ console.log("stateParams are");
 
         $scope.changeClass = function () {
             var couponId = $scope.coupon.id
-                if ($scope.favoritesText === "点击领取") {
-                    var notExist = true;
-                    angular.forEach($scope.checked, function (value) {
-                        if (value.id == $scope.coupon.id) {
-                            notExist = false;
+            if ($scope.favoritesText === "点击领取") {
+                var notExist = true;
+                angular.forEach($scope.checked, function (value) {
+                    if (value.name == $scope.coupon.name&&value.category == $scope.coupon.category&&value.category == $scope.coupon.category&&value.productIntroduction == $scope.coupon.productIntroduction&&value.productName == $scope.coupon.productName) {
+                        notExist = false;
+                    }
+                });
+                if (notExist) {
+                    $http.post("http://hahadz.com:3000/api/add", {
+                        "couponId": couponId
+                    }).success(function (data) {
+                        if (data === "couldn't find") {
+                            $ionicPopup.alert({
+                                title: '非常抱歉,库存不足'
+                            });
+                            $scope.favoritesText = "无法领取";
+                        }
+                        else {
+
+                            $ionicPopup.alert({
+                                title: '恭喜,成功领取!'
+                            });
+                            $scope.favoritesText = "已经领取";
+                            $scope.favorites = "button icon-left ion-heart button-positive";
+                            console.log($scope.items[couponId].numbers--)
+                            var newCoupon = angular.copy($scope.coupon);
+                            pushSet($scope.checked.push(newCoupon));
                         }
                     });
-                    if (notExist) {
-                        $http.post("http://hahadz.com:3000/api/add", {
-                            "couponId": couponId
-                        }).success(function (data) {
-                            if (data === "couldn't find") {
-                                $ionicPopup.alert({
-                                    title: '非常抱歉,库存不足'
-                                });
-                                $scope.favoritesText = "无法领取";
-                            }
-                            else {
 
-                                $ionicPopup.alert({
-                                    title: '恭喜,成功领取!'
-                                });
-                                $scope.favoritesText = "已经领取";
-                                $scope.favorites = "button icon-left ion-heart button-positive";
-                                console.log($scope.items[couponId].numbers--)
-                                pushSet($scope.checked.push($scope.coupon));
-                            }
-                        });
-
-                        //delete $scope.items[$scope.coupon.id];
-                        console.log($scope.items);
-                        function pushSet(){
+                    //delete $scope.items[$scope.coupon.id];
+                    console.log($scope.items);
+                    function pushSet(){
                         localStorageService.set("checkedData", $scope.checked);
-                        }
-                        console.log("this is" + $scope.checked)
                     }
-                    var newChecked = angular.copy($scope.checked);
-                    $scope.checked = newChecked;
-                    console.log(newChecked)
+                    console.log("this is" + $scope.checked)
                 }
+                var newChecked = angular.copy($scope.checked);
+                $scope.checked = newChecked;
+                console.log(newChecked)
+            }
+
         }
+
     })
 
     .controller('favoriteListCtrl', function ($scope, $stateParams, localStorageService, types) {
-
+//localStorageService.clearAll()
         $scope.types = types.all();
         $scope.items = types.allItems();
         $scope.coupon = types.fetch($stateParams.couponId);
         $scope.favorites = "button icon-left ion-plus button-positive";
         $scope.favoritesText = "点击领取";
 
-        var flag;
         if (localStorageService.get("checkedData")) {
-
-
             $scope.checked = localStorageService.get("checkedData")
-
         }
-        console.log($scope.checked)
-        console.log(localStorageService.get("checkedData"));
 
-        console.log($scope.checked)
-        console.log(localStorageService.set("checkedData",$scope.checked));
 
-        angular.forEach( $scope.checked,function(value,key) {
-            console.log(key)
-            console.log(value.id)
-            console.log($scope.items[key])
 
-        })
     })
 
     .controller('favoriteDetailCtrl', function ($scope, $stateParams,localStorageService, types, $http) {
-console.log(parseInt($stateParams.favoriteId))
+        console.log(parseInt($stateParams.favoriteId))
         $scope.checked = localStorageService.get("checkedData")
-console.log($scope.checked)
+        console.log($scope.checked)
         $scope.items = types.allItems();
-
-        $scope.favoriteCoupon = $scope.items[parseInt($stateParams.favoriteId)];
+        angular.forEach($scope.checked, function (value) {
+            if (value.id == $stateParams.favoriteId) {
+                $scope.favoriteCoupon = value;
+                console.log(value)
+            }
+        });
+        //$scope.favoriteCoupon = $scope.checked[parseInt($stateParams.favoriteId)];
         console.log("favoriteCoupon is")
         console.log($stateParams)
         $scope.checked = types.favoriteList();
@@ -136,6 +133,8 @@ console.log($scope.checked)
                     $scope.favoritesText = "已经领取";
             }
         };
+
+
     })
     .controller('MenuCtrl', function ($scope, types, $http, $ionicSideMenuDelegate, localStorageService, $location) {
         $scope.register = function (username, password) {
@@ -159,21 +158,22 @@ console.log($scope.checked)
     .controller('MyCtrl', function ($scope, types, $http, localStorageService,$state) {
         $scope.doRefresh = function () {
 
-            /*  $http.get("http://hahadz.com:3000/api/posts").success(function (data) {
+            $http.get("http://hahadz.com:3000/api/posts").success(function (data) {
              console.log(data )
              $scope.items = data;
              localStorageService.set("itemsData", data)
              })
              .finally(function () {
              $scope.$broadcast('scroll.refreshComplete')
-             });*/
+             });
+            /*
             reloadBroad($state.reload())
             function reloadBroad() {
                 $scope.$broadcast('scroll.refreshComplete')
             }
-
-
+            */
         }
+
 
         $scope.$on('myService:getUserConfigSuccess', function () {
             $scope.currentTime = new Date();
@@ -189,7 +189,7 @@ console.log($scope.checked)
         $scope.find = function (x){
             var y = false
             angular.forEach($scope.checked, function (value) {
-                if (value.id == x) {
+                if (value.name == x.name&&value.category == x.category&&value.category == x.category&&value.productIntroduction == x.productIntroduction&&value.productName == x.productName ) {
                     console.log("true")
                     y = true
                 }
