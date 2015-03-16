@@ -51,7 +51,8 @@ app.post('/api/postAll', function (req, res, next) {
     } else {
       console.log(posts.length)
       for (var i = 0; i < req.count; i++) {
-        idNumber = posts.length
+        idNumber = (Post.length + 2)
+        console.log(idNumber)
         callback(idNumber, req[i], res)
       }
     }
@@ -106,7 +107,7 @@ app.post('/api/types', function (req, res, next) {
 })
 
 app.post('/api/add', function (req, res, next) {
-
+  console.log(req.body)
   Post.update({
     "name": req.body.name
   }, {
@@ -115,19 +116,18 @@ app.post('/api/add', function (req, res, next) {
     }
   }, function () {
     Post.find({
-      "id": req.body.couponId
+      name: req.body.name
     }, function (err, data) {
-
       console.log(data)
-      console.log(data[0].category)
       if (err) {
         return next(err)
-      } else if (data[0].numbers >= 0) {
+      } else if (data.length > 0) {
 
-
-        res.send("found")
-      } else {
-        res.send("couldn't find")
+        if (data[0].numbers >= 0) {
+          res.send("found")
+        } else {
+          res.send("couldn't find")
+        }
       }
     })
   })
@@ -155,7 +155,6 @@ app.post('/api/replace', function (req, res, next) {
     }, function (err, data) {
 
       console.log(data)
-      console.log(data[0].category)
       if (err) {
         return next(err)
       } else if (data[0].numbers >= 0) {
