@@ -4,18 +4,20 @@ angular.module('starter.services', [])
  * A simple example service that returns some data.
  */
 .factory('types', function ($rootScope, $http, localStorageService) {
-  var types, items, checked = [],
-    i, theChecked = []
-
-  $http.get("http://localhost:3000/api/types").success(function (data) {
+  var types, items = new Array();
+  var checked = new Array();
+  var i, theChecked = new Array();
+  //localStorageService.clearAll();
+  $http.get("http://120.24.168.7:3000/api/types").success(function (data) {
     console.log(data)
     localStorageService.set("typesData", data)
     types = data;
   })
-  $http.get("http://localhost:3000/api/posts").success(function (data) {
+  $http.get("http://120.24.168.7:3000/api/posts").success(function (data) {
     console.log(data.length)
-    checked = localStorageService.get("checkedData")
-
+    if (localStorageService.get("checkedData")) {
+      checked = localStorageService.get("checkedData")
+    }
     for (var i = 0; i < data.length; i++) {
       var x = data[i];
       console.log(x.name)
