@@ -8,7 +8,7 @@
         <h2>{{coupon.productName}}</h2>
         <p>{{coupon.timeLimit|date:'至yyyy年MM月dd日'}}</p>
         <div class="addToCart">
-          <button ng-class="favorites" ng-if="coupon.numbers>0" ng-init="favoriteClass()" ng-click="changeClass()">{{favoritesText}}</button>
+          <button ng-class="favorites" ng-if="coupon.numbers>0" ng-init="favoriteClass()" ng-click="changeClass()" ng-disabled="{{isDisabled}}">{{favoritesText}}</button>
           <button ng-class="favorites" ng-if="coupon.numbers<=0">没有剩余</button>
         </div>
 
